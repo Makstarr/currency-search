@@ -1,28 +1,20 @@
+import { useContext, useEffect, useState } from 'react'
+import { CurrencySearchContext } from 'src/context/search-string-context'
+import { getCurrenciesData } from 'src/service/get-currency-data.service'
+import type { TCurrency } from 'src/types/currency.types'
 import CurrencyListItemComponent from './currency-list-item'
 
 export const CurrencyListCoponent = () => {
+	const { searchQuery } = useContext(CurrencySearchContext);
+	const [data, setData] = useState<TCurrency[]>([])
+
+	useEffect(() => {
+		setData(getCurrenciesData(searchQuery))
+	}, [searchQuery])
+
 	return (
 		<div>
-			<CurrencyListItemComponent data={{
-				"currency": "BRL",
-				"precision": 2,
-				"nameI18N": "Brazilian Real",
-				"exchangeRate": {
-					"buy": 4.0404,
-					"middle": 4.2654,
-					"sell": 4.4904,
-					"indicator": 0,
-					"lastModified": "2018-11-08T23:00:00Z"
-				},
-				"banknoteRate": {
-					"buy": 3.8,
-					"middle": 4.3,
-					"sell": 4.8,
-					"indicator": 0,
-					"lastModified": "2018-11-06T23:00:00Z"
-				},
-				"flags": ["provided"]
-			}} />
+			{data.map(currency => (<CurrencyListItemComponent data={currency} key={currency.currency} />))}
 		</div>
 	)
 }

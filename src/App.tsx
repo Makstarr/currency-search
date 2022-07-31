@@ -1,14 +1,16 @@
 import './App.css';
 import CurrencyList from './components/currency-list';
 import Header from './components/header';
+import { CurrencySearchContextProvider } from './context/search-string-context';
 
 function App() {
 	return (
-		<div className="App">
+		<CurrencySearchContextProvider>
 			<Header />
 			<CurrencyList />
-		</div>
+		</CurrencySearchContextProvider>
 	);
 }
+
 
 export default App;
