@@ -1,5 +1,4 @@
 export const setUrlHash = (string: string) => {
-  console.log(string);
   if (string) {
     window.history.pushState(null, document.title, `#${string}`);
   } else {

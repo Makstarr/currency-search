@@ -13,7 +13,6 @@ export const CurrencySearchContextProvider = ({ children }: { children?: JSX.Ele
 	const [searchQuery, setSearchQuery] = useState(typeof initialSearchString === 'string' ? initialSearchString : '');
 
 	const changeSearchQuery = (newQuery: string): void => {
-		console.log('newQuery' + newQuery)
 		setSearchQuery(newQuery)
 		setUrlHash(newQuery)
 	}
