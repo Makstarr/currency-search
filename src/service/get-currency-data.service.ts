@@ -1,4 +1,4 @@
-import { searchString } from "./../helpers/search-string";
+import { searchStringInString } from "../helpers/search-string-in-string";
 import type { TCurrency } from "src/types/currency.types";
 import * as jsonData from "src/data/fx.json";
 const { fx: dataList } = jsonData;
@@ -10,7 +10,7 @@ const formatedData = dataList.map(({ currency }): TCurrency => {
 export const getCurrenciesData = (searchQuery?: string): TCurrency[] => {
   if (searchQuery) {
     const filteredData = formatedData.filter(
-      ({ currency }) => searchString(currency, searchQuery)
+      ({ currency }) => searchStringInString(currency, searchQuery)
 
       // || (nameI18N && searchString(nameI18N, searchQuery))
     );
