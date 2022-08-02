@@ -1,1 +1,0 @@
-export { CurrencyListItemComponent as default } from './currency-list-item.component'

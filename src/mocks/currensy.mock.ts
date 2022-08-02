@@ -1,4 +1,4 @@
-export const currencyListItemMock = {
+export const CurrencyCardMock = {
   ticker: "RUB",
   flag: "ru.png",
   country: "Russian Rouble",
