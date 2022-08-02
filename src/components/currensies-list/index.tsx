@@ -1,0 +1,1 @@
+export { CurrenciesListCoponent as default } from './currencies-list.component'
