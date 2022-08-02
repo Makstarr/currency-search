@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { CurrenciesListCoponent } from "../currencies-list.component";
 import { TProps } from '../currency-card/currency-card.component';
 
-jest.mock('src/components/currency-list/currency-list-item', () => ({ data, baseCurrency }: TProps) => (<div>CurrencyCardComponent
+jest.mock('src/components/currensies-list/currency-card', () => ({ data, baseCurrency }: TProps) => (<div>CurrencyCardComponent
 	<div>{data.ticker}</div>
 	<div>{baseCurrency}</div>
 </div>))
