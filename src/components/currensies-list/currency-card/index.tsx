@@ -1,0 +1,1 @@
+export { CurrencyCardComponent as default } from './currency-card.component'
