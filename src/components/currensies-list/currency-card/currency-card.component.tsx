@@ -1,6 +1,8 @@
 import type { TCurrency } from 'src/types/currensies.types'
 import { flags } from 'src/images'
 
+import * as Styled from './currency-card.styled'
+
 export interface TProps {
 	data: TCurrency;
 	baseCurrency: string
@@ -8,13 +10,13 @@ export interface TProps {
 
 export const CurrencyCardComponent = ({ data: { ticker, flag, country, exchangeRate }, baseCurrency }: TProps) => {
 	return (
-		<div>
-			<div>
-				{<img src={flags[flag]} alt={ticker} />}
-			</div>
-			<div>	{ticker}</div>
-			<div> {country}</div>
-			<div>1 <span>{baseCurrency}</span> = <span>{exchangeRate}</span> {ticker} </div>
-		</div>
+		<Styled.Card>
+			<Styled.Flag src={flags[flag]} alt={ticker} />
+			<Styled.Ticker>	{ticker}</Styled.Ticker>
+			<Styled.Country> {country}</Styled.Country>
+			<Styled.ExchangeRate>
+				{exchangeRate.toFixed(2)} <Styled.BaseCurrency>{ticker} = 1 <span>{baseCurrency}</span></Styled.BaseCurrency> 
+			</Styled.ExchangeRate>
+		</Styled.Card>
 	)
 }

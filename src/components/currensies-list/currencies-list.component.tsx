@@ -1,9 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
+
 import { CurrencySearchContext } from 'src/context/search-string-context'
 import { filterCurrenciesList } from 'src/helpers/filter-currency-list.helper'
 import { getCurrencies } from 'src/services/get-currency-data.service'
 import type { TCurrency } from 'src/types/currensies.types'
+
 import CurrencyCard from './currency-card'
+import * as Styled from './currencies-list.styled'
 
 interface TServerData {
 	list: TCurrency[],
@@ -15,12 +18,12 @@ export const CurrenciesListCoponent = () => {
 
 	const [data, setData] = useState<TServerData>({ list: [], baseCurrency: '' })
 	const [filteredList, setFilteredList] = useState<TCurrency[]>([]);
-	const [error, setError] = useState(false);
+	const [isError, setIsError] = useState(false);
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	useEffect(() => {
 		const handleLoading = async () => {
-			setError(false)
+			setIsError(false)
 			if (isLoaded) {
 				setFilteredList(filterCurrenciesList(data.list, searchQuery))
 			}
@@ -31,7 +34,7 @@ export const CurrenciesListCoponent = () => {
 					setFilteredList(filterCurrenciesList(serverData.list, searchQuery))
 					setIsLoaded(true)
 				} else {
-					setError(true)
+					setIsError(true)
 				}
 			}
 		}
@@ -40,19 +43,21 @@ export const CurrenciesListCoponent = () => {
 
 	}, [searchQuery, isLoaded, data])
 
-	if (error) {
-		return <div>ERROR</div>
+	if (isError) {
+		return <Styled.ErrorMessage>ERROR<Styled.Smile>:(</Styled.Smile>TRY AGAIN LATER</Styled.ErrorMessage>
 	}
 	if (!isLoaded) {
-		return <div>LOADING</div>
+		return <Styled.Loader>LOADING...</Styled.Loader>
 	}
 	if (filteredList.length === 0) {
-		return <div>NOTHING FOUND</div>
+		return <Styled.NotFound>NOTHING FOUND<Styled.Smile>:(</Styled.Smile>MAYBE DIFFERENT KEYWORD?</Styled.NotFound>
 	}
 	return (
-		<div>
-			{filteredList.map(currency => (<CurrencyCard data={currency} key={currency.ticker} baseCurrency={data.baseCurrency} />))}
-		</div>
+		<Styled.ListContainer>
+			<Styled.CardsList>
+				{filteredList.map(currency => (<CurrencyCard data={currency} key={currency.ticker} baseCurrency={data.baseCurrency} />))}
+			</Styled.CardsList>
+		</Styled.ListContainer>
 	)
 }
 
