@@ -7,12 +7,10 @@ export const HeaderSearchComponent = () => {
 
 	const handleInput = (e: { target: { value: string } }) => {
 		setInput(e?.target?.value || '');
+		changeSearchQuery && changeSearchQuery(e?.target?.value || '')
 	}
-	const handleSearch = () => {
-		changeSearchQuery && changeSearchQuery(input || '')
-	}
-
+	
 	return (
-		<div>Search: <input type='text' value={input} onChange={handleInput} onKeyUp={handleSearch} /></div>
+		<div>Search: <input type='text' value={input} onChange={handleInput} data-testid="search-input"/></div>
 	)
 }

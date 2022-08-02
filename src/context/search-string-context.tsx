@@ -1,6 +1,6 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 
-import { setUrlHash } from 'src/helpers/set-url-hash';
+import { setUrlHash } from 'src/helpers/set-url-hash.helper';
 
 interface TValue {
 	searchQuery: string, changeSearchQuery?: (newQuery: string) => void,

@@ -1,17 +1,20 @@
-import { useEffect, useState } from 'react'
-import type { TCurrency } from 'src/types/currency.types'
+import type { TCurrency } from 'src/types/currensies.types'
 import { flags } from 'src/images'
-import { getCurrencyFlagName } from 'src/helpers/get-currency-flag-name'
 
-interface Props {
-	data: TCurrency
+export interface TProps {
+	data: TCurrency;
+	baseCurrency: string
 }
 
-export const CurrencyListItemComponent = ({ data: { currency } }: Props) => {
+export const CurrencyListItemComponent = ({ data: { ticker, flag, country, exchangeRate }, baseCurrency }: TProps) => {
 	return (
 		<div>
-			{<img src={flags[getCurrencyFlagName(currency)]} alt={currency} />}
-			{currency}
+			<div>
+				{<img src={flags[flag]} alt={ticker} />}
+			</div>
+			<div>	{ticker}</div>
+			<div> {country}</div>
+			<div>1 <span>{baseCurrency}</span> = <span>{exchangeRate}</span> {ticker} </div>
 		</div>
 	)
 }

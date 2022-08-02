@@ -12,7 +12,7 @@ export interface TBanknoteRate {
   indicator: number;
   lastModified: string;
 }
-export interface TCurrency {
+export interface TCurrencyResponseItem {
   currency: string;
   nameI18N?: string;
   precision?: number;
@@ -20,4 +20,19 @@ export interface TCurrency {
   exchangeRate?: TExchangeRate;
   banknoteRate?: TBanknoteRate;
   flags?: string[];
+}
+
+export interface TGetCurrenciesResponse {
+  fx: TCurrencyResponseItem[];
+  institute: number;
+  lastUpdated: string;
+  comparisonDate: string;
+  baseCurrency: string;
+}
+
+export interface TCurrency {
+  ticker: string;
+  flag: string;
+  country: string;
+  exchangeRate: number;
 }
