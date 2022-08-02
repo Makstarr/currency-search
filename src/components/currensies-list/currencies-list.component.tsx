@@ -44,13 +44,13 @@ export const CurrenciesListCoponent = () => {
 	}, [searchQuery, isLoaded, data])
 
 	if (isError) {
-		return <Styled.ErrorMessage>ERROR<Styled.Smile>:(</Styled.Smile>TRY AGAIN LATER</Styled.ErrorMessage>
+		return <Styled.ErrorMessage data-testid="error-message">ERROR<Styled.Smile>:(</Styled.Smile>TRY AGAIN LATER</Styled.ErrorMessage>
 	}
 	if (!isLoaded) {
-		return <Styled.Loader>LOADING...</Styled.Loader>
+		return <Styled.Loader data-testid="loader">LOADING...</Styled.Loader>
 	}
 	if (filteredList.length === 0) {
-		return <Styled.NotFound>NOTHING FOUND<Styled.Smile>:(</Styled.Smile>MAYBE DIFFERENT KEYWORD?</Styled.NotFound>
+		return <Styled.NotFound data-testid="nothing-found">NOTHING FOUND<Styled.Smile>:(</Styled.Smile>MAYBE DIFFERENT KEYWORD?</Styled.NotFound>
 	}
 	return (
 		<Styled.ListContainer>

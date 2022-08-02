@@ -1,6 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { CurrenciesListCoponent } from "../currencies-list.component";
 import { TProps } from '../currency-card/currency-card.component';
+import { ThemeProvider } from 'styled-components'
+import { theme } from "src/theme/themes";
+
 
 jest.mock('src/components/currensies-list/currency-card', () => ({ data, baseCurrency }: TProps) => (<div>CurrencyCardComponent
 	<div>{data.ticker}</div>
@@ -21,10 +24,10 @@ describe('CurrenciesListComponent', () => {
 
 		getCurrencies.mockImplementation(async () => null)
 
-		render(<CurrenciesListCoponent />);
-		const loader = screen.getByText('LOADING');
+		render(<ThemeProvider theme={theme}><CurrenciesListCoponent /></ThemeProvider>);
+		const loader = screen.getByTestId('loader');
 		expect(loader).toBeInTheDocument();
-		const notFound = await screen.findByText('ERROR');
+		const notFound = await screen.findByTestId('error-message');
 		expect(notFound).toBeInTheDocument()
 	});
 
@@ -37,8 +40,8 @@ describe('CurrenciesListComponent', () => {
 			], baseCurrency: 'EUR'
 		}))
 
-		render(<CurrenciesListCoponent />);
-		const loader = screen.getByText('LOADING');
+		render(<ThemeProvider theme={theme}><CurrenciesListCoponent /></ThemeProvider>);
+		const loader = screen.getByTestId('loader');
 		expect(loader).toBeInTheDocument();
 		const listElements = await screen.findAllByText('CurrencyCardComponent');
 		expect(listElements.length).toBe(3);
@@ -55,10 +58,10 @@ describe('CurrenciesListComponent', () => {
 			list: [], baseCurrency: 'EUR'
 		}))
 
-		render(<CurrenciesListCoponent />);
-		const loader = screen.getByText('LOADING');
+		render(<ThemeProvider theme={theme}><CurrenciesListCoponent /></ThemeProvider >);
+		const loader = screen.getByTestId('loader');
 		expect(loader).toBeInTheDocument();
-		const notFound = await screen.findByText('NOTHING FOUND');
+		const notFound = await screen.findByTestId('nothing-found');
 		expect(notFound).toBeInTheDocument()
 	});
 })
