@@ -2,6 +2,7 @@
   "name": "george-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Makstarr.github.io/currency-search",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -24,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --watchAll",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +50,7 @@
   "devDependencies": {
     "@types/styled-components": "^5.1.25",
     "@types/webpack-env": "^1.17.0",
+    "gh-pages": "^4.0.0",
     "jest-watch-typeahead": "^0.6.5"
   }
 }
