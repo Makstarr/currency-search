@@ -1,5 +1,4 @@
 import { ThemeProvider } from 'styled-components';
-import './App.css';
 import CurrenciesList from './components/currensies-list';
 import Header from './components/header';
 import SearchBar from './components/search-bar';
